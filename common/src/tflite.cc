@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef  SKIP_TFLM
-
 #include "tflite.h"
 
 #include <cstdint>
@@ -104,6 +102,12 @@ constexpr int kTensorArenaSize = const_max<int>(
 #endif
 #ifdef INLCUDE_MODEL_MLCOMMONS_TINY_V01_VWW
     99 * 1024,
+#endif
+#ifdef INLCUDE_MODEL_MNIST
+    256 * 1024,
+#endif
+#ifdef INLCUDE_MODEL_SVHN
+    256 * 1024,
 #endif
     0 /* When no models defined, we don't need a tensor arena. */
 );
@@ -266,5 +270,3 @@ void tflite_classify() {
 }
 
 int8_t* get_input() { return interpreter->input(0)->data.int8; }
-
-#endif // SKIP_TFLM
